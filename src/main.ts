@@ -6,7 +6,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable validation globally
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,7 +14,6 @@ async function bootstrap() {
     }),
   );
 
-  // Swagger documentation setup
   const config = new DocumentBuilder()
     .setTitle('User and Document Management API')
     .setDescription('API for managing users and documents')

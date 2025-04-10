@@ -9,3 +9,8 @@ export class CreateDocumentDto {
   @IsOptional()
   description?: string;
 }
+
+export type CreateDocumentData = CreateDocumentDto & {
+    filePath: string;
+    mimeType: string;
+  };

@@ -7,9 +7,9 @@ import {
   import { Repository } from 'typeorm';
   import { Document } from './entities/document.entity';
   import { User } from '../users/entities/user.entity';
-  import { CreateDocumentDto } from './dto/create-document.dto';
-  import { UpdateDocumentDto } from './dto/update-document.dto';
   import { UserRole } from '../shared/enums/user-role.enum';
+import { CreateDocumentDto } from './dto/create-document.dto';
+import { UpdateDocumentDto } from './dto/update-document.dto';
   
   @Injectable()
   export class DocumentsService {

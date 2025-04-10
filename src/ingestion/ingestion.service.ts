@@ -5,6 +5,8 @@ import { Document } from '../documents/entities/document.entity';
 import { ClientProxyFactory, Transport } from '@nestjs/microservices';
 import { ConfigService } from '@nestjs/config';
 import { IngestionStatus } from '../shared/enums/ingestion-status.enum';
+import { DocumentStatus } from 'src/shared/enums/document-status.enum';
+import { toIngestionStatus } from 'src/shared/enums/status.mapper';
 
 @Injectable()
 export class IngestionService {
@@ -29,26 +31,29 @@ export class IngestionService {
     const document = await this.documentsRepository.findOne({
       where: { id: documentId },
     });
-
+  
     if (!document) {
       throw new Error('Document not found');
     }
-
+  
     try {
-      document.status = IngestionStatus.PROCESSING;
+      document.status = DocumentStatus.PROCESSING;
       await this.documentsRepository.save(document);
-
+  
       const result = await this.pythonClient
-        .send('ingest_document', { documentId: document.id, filePath: document.filePath })
+        .send('ingest_document', { 
+          documentId: document.id, 
+          filePath: document.filePath 
+        })
         .toPromise();
-
-      document.status = IngestionStatus.COMPLETED;
+  
+      document.status = DocumentStatus.COMPLETED;
       await this.documentsRepository.save(document);
-
+  
       return result;
     } catch (error) {
       this.logger.error('Ingestion failed', error.stack);
-      document.status = IngestionStatus.FAILED;
+      document.status = DocumentStatus.FAILED;
       await this.documentsRepository.save(document);
       throw error;
     }
@@ -61,6 +66,6 @@ export class IngestionService {
     if (!document) {
       throw new Error('Document not found');
     }
-    return document.status;
+    return toIngestionStatus(document.status);
   }
 }

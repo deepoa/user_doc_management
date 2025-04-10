@@ -1,3 +1,5 @@
+import { DocumentStatus } from 'src/shared/enums/document-status.enum';
+import { User } from 'src/users/entities/user.entity';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -7,8 +9,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
   } from 'typeorm';
-  import { User } from '../users/entities/user.entity';
-  import { DocumentStatus } from '../shared/enums/document-status.enum';
+
   
   @Entity()
   export class Document {

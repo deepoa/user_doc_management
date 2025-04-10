@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   async register(userData: Partial<User>): Promise<User> {
-    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    const hashedPassword = await bcrypt.hash(userData.password!, 10); // ! asserts non-null
     return this.usersService.create({
       ...userData,
       password: hashedPassword,

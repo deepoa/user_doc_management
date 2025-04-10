@@ -11,11 +11,12 @@ import {
   import { UsersService } from './users.service';
   import { User } from './entities/user.entity';
   import { UpdateUserDto } from './dto/update-user.dto';
-  import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-  import { RolesGuard } from '../auth/guards/roles.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.gaurd';
+import { RolesGuard } from 'src/auth/guards/roles.gaurd';
+import { UserRole } from 'src/shared/enums/user-role.enum';
   import { Roles } from '../auth/decorators/roles.decorator';
-  import { UserRole } from '../shared/enums/user-role.enum';
-  import { UpdateUserRoleDto } from './dto/update-user-role.dto';
+import { UpdateUserRoleDto } from './dto/update-user-role.dto';
+
   
   @Controller('users')
   @UseGuards(JwtAuthGuard, RolesGuard)

@@ -7,12 +7,12 @@ import {
     UseGuards,
   } from '@nestjs/common';
   import { IngestionService } from './ingestion.service';
-  import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
-  import { RolesGuard } from '../auth/guards/roles.guard';
-  import { Roles } from '../auth/decorators/roles.decorator';
   import { UserRole } from '../shared/enums/user-role.enum';
   import { Request } from 'express';
   import { User } from '../users/entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.gaurd';
+import { RolesGuard } from 'src/auth/guards/roles.gaurd';
+import { Roles } from 'src/auth/decorators/roles.decorator';
   
   @Controller('ingestion')
   @UseGuards(JwtAuthGuard, RolesGuard)
