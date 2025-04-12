@@ -21,7 +21,7 @@ import { IngestionModule } from './ingestion/ingestion.module';
         password: configService.get<string>('DATABASE_PASSWORD'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true, // In production, set to false and use migrations
+        synchronize: true, 
       }),
       inject: [ConfigService],
     }),

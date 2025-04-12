@@ -13,6 +13,7 @@ async function bootstrap() {
       transform: true,
     }),
   );
+  app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
     .setTitle('User and Document Management API')
